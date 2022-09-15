@@ -15,8 +15,16 @@ param(
     [System.String]
     $ParamEmail,
 
+    [Parameter(Mandatory=$True, Position=4, ValueFromPipeline=$false)]
+    [System.String]
+    $ParamPartitionDiskWork,
 
-    [Parameter(Mandatory=$false, Position=4, ValueFromPipeline=$false)]
+    [Parameter(Mandatory=$True, Position=5, ValueFromPipeline=$false)]
+    [System.String]
+    $ParamNameDirProgramas,
+
+
+    [Parameter(Mandatory=$false, Position=6, ValueFromPipeline=$false)]
     [System.String]
     $Param2
 )
@@ -144,6 +152,36 @@ if(-not (Test-Path $ParamDirProgramas\$Programa)) {
     New-Item $ParamDirProgramas\$Programa -Type Directory -Force
 }
 choco install "$Programa" -y --install-arguments='/DIR=""D:\Programas\$Programa""'
+
+
+$Programa="vscode"
+Echo "Installing $Programa"
+if(-not (Test-Path $ParamDirProgramas\$Programa)) {
+    New-Item $ParamDirProgramas\$Programa -Type Directory -Force
+}
+choco install $Programa -y --params "/NoDesktopIcon /DontAddToPath /NoQuicklaunchIcon" --ia="/DIR=D:\\Programas\\vscode"
+
+
+$Programa="terraform"
+Echo "Installing $Programa"
+if(-not (Test-Path $ParamDirProgramas\$Programa)) {
+    New-Item $ParamDirProgramas\$Programa -Type Directory -Force
+}
+choco install $Programa -y --params "/NoDesktopIcon /DontAddToPath /NoQuicklaunchIcon" --ia="/DIR=$ParamPartitionDiskWork\\$ParamNameDirProgramas\\$Programa"
+echo "/DIR=$ParamPartitionDiskWork\\$ParamNameDirProgramas\\$Programa"
+
+$Programa="adobereader"
+Echo "Installing $Programa"
+if(-not (Test-Path $ParamDirProgramas\$Programa)) {
+    New-Item $ParamDirProgramas\$Programa -Type Directory -Force
+}
+choco install $Programa -y --params '"/UpdateMode:4"' --ia="/DIR=$ParamPartitionDiskWork\\$ParamNameDirProgramas\\$Programa"
+echo "/DIR=$ParamPartitionDiskWork\\$ParamNameDirProgramas\\$Programa"
+
+
+
+
+Read-Host "Pulse una tecla**********************************************"
 #--params "--install-arguments='/DIR=D:\Programas\""$Programa""'"
 
 

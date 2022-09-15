@@ -12,6 +12,7 @@ $Email="jhonbrandom@gmail.com"
 $DirDatos=$null
 $DirTemp= $null
 $DirRepositoriosGit="repositoriosGit"
+$NameDirProgramas="Programas"
 #Read-Host "Pulse una tecla"
 
 echo "++++++++++++++++++++Habilitando politicas para ejecucion de comandos en el servidor++++++++++++++++++++++++++++++++++++++++++"
@@ -100,7 +101,7 @@ choco --version
 
 echo "Instalar programas"
 #Read-Host "Instalar programas with choco"
-F:\Arquitectura\repositoriosGit\setupWindows10\chocoInstalls.ps1 -ParamDirProgramas $DirProgramas -ParamDirTemp $DirTemp -ParamUserName $UserName -ParamEmail $Email
+F:\Arquitectura\repositoriosGit\setupWindows10\chocoInstalls.ps1 -ParamDirProgramas $DirProgramas -ParamDirTemp $DirTemp -ParamUserName $UserName -ParamEmail $Email -ParamPartitionDiskWork $PartitionDiskWork -ParamNameDirProgramas $NameDirProgramas
 
 
 echo "++++++++++++++++++++Configurar acciones al cerrar la tapa++++++++++++++++++++++++++++++++++++++++++"
